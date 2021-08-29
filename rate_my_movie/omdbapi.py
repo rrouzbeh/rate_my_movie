@@ -32,6 +32,7 @@ class MovieInfo(BaseModel, ABC):
     Ratings: Optional[List[Ratings]]
     Response: str
     rates: dict
+    Error: Optional[str]
 
     def __init__(self, **data: Any):
         super().__init__(**data)
@@ -56,4 +57,4 @@ class RottenTomato(MovieInfo):
                 "Rotten Tomatoes", Status.RATE_NOT_FOUND)
             return rate
         else:
-            return {"Error": Status.MOVIE_NOT_FOUNT}
+            return {"Error": self.Error}
