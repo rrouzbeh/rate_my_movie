@@ -26,6 +26,8 @@ DATA_RATE_NOTE_FOUND = {
 
 DATA_MOVIE_NOT_FOUND = {"Response": "False", "Error": "Movie not found!"}
 
+DATA_MOVIE_INVALID_KEY = {"Response": "False", "Error": "Invalid API key!"}
+
 
 @pytest.fixture
 def get_movie_ok(mocker):
@@ -52,6 +54,16 @@ def get_movie_not_found(mocker):
     movie = GetMovieInfo(api_key='xxxxx')
     resp_mock = Mock()
     resp_mock.json.return_value = DATA_MOVIE_NOT_FOUND
+    get_mock = mocker.patch('rate_my_movie.omdbapi.requests.get')
+    get_mock.return_value = resp_mock
+    return movie
+
+
+@pytest.fixture
+def get_movie_invalid_key(mocker):
+    movie = GetMovieInfo(api_key='xxxxx')
+    resp_mock = Mock()
+    resp_mock.json.return_value = DATA_MOVIE_INVALID_KEY
     get_mock = mocker.patch('rate_my_movie.omdbapi.requests.get')
     get_mock.return_value = resp_mock
     return movie
@@ -88,4 +100,13 @@ def test_rotten_tomato_movie_not_found(get_movie_not_found):
 
     movie_info = RottenTomato(**data)
 
-    assert movie_info.rate() == {"Error": Status.MOVIE_NOT_FOUNT}
+    assert movie_info.rate() == {"Error": "Movie not found!"}
+
+
+def test_rotten_tomato_invalid_key(get_movie_invalid_key):
+    """Test rotten_tomato_rate whenever movie not found"""
+    data = get_movie_invalid_key.get(title="Inception")
+
+    movie_info = RottenTomato(**data)
+
+    assert movie_info.rate() == {"Error": "Invalid API key!"}
