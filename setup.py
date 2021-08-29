@@ -19,7 +19,7 @@ setup(
     version=read("rate_my_movie", "VERSION"),
     packages=["rate_my_movie", "rate_my_movie.config"],
     include_package_data=True,
-    install_requires=["dynaconf", "pydantic", "rich==10.7.0"],
+    install_requires=["dynaconf==3.1.4", "pydantic==1.8.2", "rich==10.7.0"],
     entry_points="""
         [console_scripts]
         rate-my-movie=rate_my_movie.cli:main
