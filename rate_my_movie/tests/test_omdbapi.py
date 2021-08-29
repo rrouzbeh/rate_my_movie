@@ -2,7 +2,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from rate_my_movie.omdbapi import GetMovieInfo, RottenTomato, MovieInfo
+from rate_my_movie.omdbapi import GetMovieInfo, RottenTomato
 from rate_my_movie.enums import Status
 
 DATA_OK = {
