@@ -1,0 +1,10 @@
+.DS_Store
+htmlcov/
+.coverage
+# Ignore dynaconf secret files
+*/.secrets.*
+*.egg-info
+*.egg
+build/
+dist/
+.pytest_cache
