@@ -2,7 +2,7 @@
 
 ![ci workflow](https://github.com/rrouzbeh/rate_my_movie/actions/workflows/main.yml/badge.svg)
 
-An Omdbapi cli to obtain movie rates
+A simple tool to check out the rotten tomatoes score.
 
 # Installation
 
