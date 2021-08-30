@@ -8,8 +8,7 @@ from rate_my_movie.enums import Status
 console = Console()
 
 COLORS = {
-    Status.MOVIE_NOT_FOUNT: "red",
-    Status.RATE_NOT_FOUND: "blue"
+    "Error": "red"
 }
 
 MSG = {
@@ -33,7 +32,7 @@ def console_output(data: dict, title: str) -> None:
     console.print(
         f"\n[bold blue]Movie[/bold blue]: [magenta]{ title.capitalize() }[/magenta]")
     for k, v in data.items():
-        color = COLORS.get(v, DEFAULT_COLOR)
+        color = COLORS.get(k, DEFAULT_COLOR)
         msg = MSG.get(v, v)
         console.print(
             f"\n[bold { color }]{k}[/bold {color}]: [cyan]{msg}[/cyan] \n")
